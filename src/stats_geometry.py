@@ -1,34 +1,3 @@
-\
-\
-\
-\
-\
-\
-\
-\
-\
-\
-\
-\
-\
-\
-\
-\
-\
-\
-\
-\
-\
-\
-\
-\
-\
-\
-\
-\
-\
-\
-
 import numpy as np
 from scipy.stats import rankdata
 from statsmodels.stats.multitest import multipletests

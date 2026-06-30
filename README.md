@@ -2,7 +2,7 @@
 
 Code accompanying **“Understanding When Handcrafted Acoustic Descriptors Generalise: A Geometry-Driven Analysis Across Languages and Synthesis Systems”** (Chakir, Gahi, El-Khatib, 2026), submitted to *Computer Speech & Language*.
 
-Zenodo archive: [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20534006.svg)](https://doi.org/10.5281/zenodo.20534006)
+Zenodo archive:[![DOI](https://zenodo.org/badge/1284498866.svg)](https://doi.org/10.5281/zenodo.21056678)
 
 ## Scope
 

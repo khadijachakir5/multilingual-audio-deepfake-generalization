@@ -1,0 +1,71 @@
+{
+  "study": "Understanding When Handcrafted Acoustic Descriptors Generalise",
+  "audio": {
+    "sampling_rate_hz": 16000,
+    "mono": true,
+    "maximum_loaded_duration_seconds": 4.0,
+    "minimum_duration_after_trimming_seconds": 1.0,
+    "silence_trim_top_db": 30,
+    "peak_amplitude_normalisation": true,
+    "data_augmentation": false
+  },
+  "features": {
+    "total_dimensions": 155,
+    "families": {
+      "MFCC": 40,
+      "LFCC": 40,
+      "CQCC": 40,
+      "GD": 7,
+      "IF": 8,
+      "PD": 6,
+      "CPP": 3,
+      "Jitter": 6,
+      "Shimmer": 5
+    },
+    "cqcc": {
+      "bins_per_octave": 96,
+      "requested_octaves": 9,
+      "fmin_hz": 32.7,
+      "nyquist_capped_bins_at_16khz": 762
+    }
+  },
+  "preprocessing": {
+    "imputation": "feature-wise median fitted on the relevant fit partition",
+    "optional_transform": "log1p for non-negative dimensions failing Shapiro-Wilk at alpha=0.05",
+    "normalisation": "feature-wise z-score",
+    "pca_global_fit_partition": "all genuine and synthetic observations",
+    "pca_fake_fit_partition": "synthetic observations only"
+  },
+  "classifier": {
+    "model": "RandomForestClassifier",
+    "criterion": "gini",
+    "max_features": "sqrt",
+    "class_weight": "balanced",
+    "n_estimators_grid": [100, 150, 200],
+    "max_depth_grid": [8, 12, 16],
+    "seeds": [0, 42, 123, 456, 1337],
+    "training_balance": "random undersampling of majority class"
+  },
+  "statistics": {
+    "alpha": 0.05,
+    "minimum_samples_per_kruskal_group": 20,
+    "bootstrap_replicates": 2000,
+    "interaction_permutations": 999,
+    "multiple_testing": "Benjamini-Hochberg"
+  },
+  "shap": {
+    "algorithm": "TreeExplainer",
+    "n_estimators": 150,
+    "max_depth": 12,
+    "seed": 0,
+    "maximum_sampled_test_observations_per_fold": 300,
+    "aggregation": "mean absolute SHAP over observations and family dimensions"
+  },
+  "corpus_selection": {
+    "mlaad_languages": ["de", "en", "es", "fr", "it", "pl", "ru", "uk"],
+    "mailabs_maximum_real_per_language": 2000,
+    "minimum_files_per_mlaad_generator_directory": 50,
+    "ggmddc_maximum_per_split_language_class_cell": 2000,
+    "ggmddc_minimum_files_per_cell": 10
+  }
+}
